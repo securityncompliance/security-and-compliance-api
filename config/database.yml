@@ -1,0 +1,26 @@
+# PostgreSQL. Versions 9.3 and up are supported.
+#
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: security_and_compliance_api_development
+  username: <%= ENV['db_username'] %>
+  password: <%= ENV['db_password'] %>
+  host: <%= ENV['db_host'] || 'localhost' %>
+  port: <%= ENV['db_port'] || '5432' %>
+test:
+  <<: *default
+  database: security_and_compliance_api_test
+  username: <%= ENV['db_username'] %>
+  password: <%= ENV['db_password'] %>
+  host: <%= ENV['db_host'] || 'localhost' %>
+  port: <%= ENV['db_port'] || '5432' %>
+production:
+  <<: *default
+  database: security_and_compliance_api_production
